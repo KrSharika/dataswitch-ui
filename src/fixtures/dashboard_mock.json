@@ -1,0 +1,171 @@
+{
+  "meta": {
+    "page": "dashboard",
+    "api_version": "v1",
+    "generated_at": "2026-09-30T10:42:00Z",
+    "note": "Mock data for frontend development. Numbers are internally consistent: summary totals equal the sum of layer totals."
+  },
+  "app": {
+    "name": "DataSwitch",
+    "navigation": [
+      { "id": "dashboard", "label": "Dashboard", "route": "/dashboard", "active": true },
+      { "id": "readiness_queue", "label": "Readiness queue", "route": "/readiness-queue", "active": false },
+      { "id": "run_history", "label": "Run history", "route": "/run-history", "active": false }
+    ]
+  },
+  "header": {
+    "title": "Dashboard",
+    "space": {
+      "id": "INCSPACE01",
+      "tenant": "incture.ap10.hcs.cloud.sap"
+    },
+    "last_run": {
+      "run_id": "RUN-20260930-0031",
+      "started_at": "2026-09-30T10:30:00Z",
+      "finished_at": "2026-09-30T10:30:48Z",
+      "relative_label": "12 min ago",
+      "status": "completed_with_issues",
+      "route": "/run-history/RUN-20260930-0031"
+    },
+    "subtitle": "Space INCSPACE01 \u00b7 last run 12 min ago",
+    "actions": [
+      {
+        "id": "import_objects",
+        "label": "Import objects",
+        "type": "primary",
+        "enabled": true,
+        "route": "/import",
+        "accepted_sources": ["BW", "JSON", "CSN"]
+      }
+    ]
+  },
+  "summary_cards": [
+    {
+      "id": "total",
+      "label": "Total objects",
+      "value": 82,
+      "variant": "neutral",
+      "link": "/readiness-queue"
+    },
+    {
+      "id": "deployed",
+      "label": "Deployed",
+      "value": 61,
+      "variant": "success",
+      "percent_of_total": 74.39,
+      "link": "/readiness-queue?status=deployed"
+    },
+    {
+      "id": "blocked",
+      "label": "Blocked",
+      "value": 14,
+      "variant": "warning",
+      "percent_of_total": 17.07,
+      "link": "/readiness-queue?status=blocked"
+    },
+    {
+      "id": "failed",
+      "label": "Failed",
+      "value": 7,
+      "variant": "error",
+      "percent_of_total": 8.54,
+      "link": "/readiness-queue?status=failed"
+    }
+  ],
+  "status_by_layer": {
+    "title": "Status by layer",
+    "layers": [
+      {
+        "id": "local_table",
+        "label": "Local table",
+        "deployed": 18,
+        "total": 18,
+        "blocked": 0,
+        "failed": 0,
+        "percent_complete": 100.0,
+        "progress_variant": "success",
+        "display": "18 / 18",
+        "link": "/readiness-queue?layer=local_table"
+      },
+      {
+        "id": "relational_dataset_view",
+        "label": "Relational dataset view",
+        "deployed": 18,
+        "total": 18,
+        "blocked": 0,
+        "failed": 0,
+        "percent_complete": 100.0,
+        "progress_variant": "success",
+        "display": "18 / 18",
+        "link": "/readiness-queue?layer=relational_dataset_view"
+      },
+      {
+        "id": "dimension_fact_view",
+        "label": "Dimension & fact view",
+        "deployed": 14,
+        "total": 16,
+        "blocked": 2,
+        "failed": 0,
+        "percent_complete": 87.5,
+        "progress_variant": "warning",
+        "display": "14 / 16",
+        "link": "/readiness-queue?layer=dimension_fact_view"
+      },
+      {
+        "id": "union_fact_view",
+        "label": "Union fact view",
+        "deployed": 8,
+        "total": 14,
+        "blocked": 4,
+        "failed": 2,
+        "percent_complete": 57.14,
+        "progress_variant": "warning",
+        "display": "8 / 14",
+        "link": "/readiness-queue?layer=union_fact_view"
+      },
+      {
+        "id": "analytic_model",
+        "label": "Analytic model",
+        "deployed": 3,
+        "total": 16,
+        "blocked": 8,
+        "failed": 5,
+        "percent_complete": 18.75,
+        "progress_variant": "error",
+        "display": "3 / 16",
+        "link": "/readiness-queue?layer=analytic_model"
+      }
+    ]
+  },
+  "top_blockers": {
+    "title": "Top blockers",
+    "items": [
+      {
+        "id": "missing_primary_key",
+        "label": "Missing primary key",
+        "affected_objects_count": 9,
+        "display": "9 objects",
+        "severity": "high",
+        "link": "/readiness-queue?blocker=missing_primary_key",
+        "sample_objects": [
+          { "name": "DIM_VENDOR", "layer": "dimension_fact_view" },
+          { "name": "FACT_GL_LINE_ITEM", "layer": "dimension_fact_view" },
+          { "name": "UF_SALES_ACTUAL_PLAN", "layer": "union_fact_view" }
+        ]
+      },
+      {
+        "id": "unresolved_dimension_association",
+        "label": "Unresolved dimension association",
+        "affected_objects_count": 7,
+        "display": "7 objects",
+        "severity": "high",
+        "link": "/readiness-queue?blocker=unresolved_dimension_association",
+        "sample_objects": [
+          { "name": "AM_SALES_OVERVIEW", "layer": "analytic_model" },
+          { "name": "AM_MARGIN_ANALYSIS", "layer": "analytic_model" },
+          { "name": "AM_INVENTORY_AGING", "layer": "analytic_model" }
+        ]
+      }
+    ]
+  }
+}
